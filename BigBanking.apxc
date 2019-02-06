@@ -1,0 +1,17 @@
+public class BigBanking {
+
+    public static void status()
+    {
+        List<Transaction__c> a = new list<Transaction__c>();
+        
+        a = [SELECT Id, name, status__c, Balance__c
+             FROM Transaction__c
+             Where status__c='Good Standing' OR status__c = null];
+        for(integer i = 0; i <a.size(); i++)
+            
+        {
+            a[i].Status__c='overdrawn';
+        }
+    upsert a;
+    }
+}
